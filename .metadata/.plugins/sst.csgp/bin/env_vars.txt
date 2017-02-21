@@ -1,0 +1,4 @@
+C:\Apps\Atollic\TrueSTUDIO for ARM 5.5.1\ide\plugins\sst.tm_1.1.2.201508171502\CSHOME\
+C:\Apps\Atollic\TrueSTUDIO for ARM 5.5.1\ide\plugins\sst.csgp_1.0.5.201508171502\CSHOME
+C:\Apps\Atollic\TrueSTUDIO for ARM 5.5.1\ARMTools
+D:\Studium\ElektroUNDKommunicationstechnik\FS2017\Echtzeitbetriebssystem\Uebungen\Git\.metadata\.plugins\sst.tm
