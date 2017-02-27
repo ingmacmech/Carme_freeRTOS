@@ -50,13 +50,13 @@
 #include <memPoolService.h>			/* Memory pool manager service			*/
 
 /*----- Macros -------------------------------------------------------------*/
-#define STACKSIZE_TASK_SWITCH (256)
-#define STACKSIZE_TASK_BUTTON (256)
-#define STACKSIZE_TASK_LCD (1024)
+#define STACKSIZE_TASK_SWITCH (256);
+#define STACKSIZE_TASK_BUTTON (256);
+#define STACKSIZE_TASK_LCD (1024);
 
-#define PRIORITY_TASK_SWITCH (1)
-#define PRIORITY_TASK_BUTTON (1)
-#define PRIORYTY_TASK_LCD (1)
+#define PRIORITY_TASK_SWITCH (1);
+#define PRIORITY_TASK_BUTTON (1);
+#define PRIORYTY_TASK_LCD (1);
 
 /*----- Data types ---------------------------------------------------------*/
 
@@ -81,13 +81,7 @@ int main(void) {
 
 	//xTaskCreate(GreenLEDtask, "Blinky", 200U, NULL, 4U, NULL);
 	//xTaskCreate(Serialtask, "Serial", 1024U, NULL, 4U, NULL);
-	xTaskCreate(GetSwitchStatus,
-				"Switch",
-				STACKSIZE_TASK_SWITCH,
-				NULL,
-				PRIORITY_TASK_SWITCH,
-				NULL);
-
+	xTaskCreate(GetSwitchStatus, "Switch", STACKSIZE_TASK_SWITCH, NULL, 4U, NULL);
 
 	vTaskStartScheduler();
 	for (;;) {
@@ -172,6 +166,6 @@ static void ShowStatusLCD(void *pvargs)
 	for(;;)
 	{
 
-		vTaskDelay(100U / portTICK_RATE_MS);
+		vTaskDelay(100U / portTick_RATE_MS);
 	}
 }

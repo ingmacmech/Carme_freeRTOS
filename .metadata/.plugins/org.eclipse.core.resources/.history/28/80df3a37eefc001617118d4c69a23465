@@ -81,13 +81,7 @@ int main(void) {
 
 	//xTaskCreate(GreenLEDtask, "Blinky", 200U, NULL, 4U, NULL);
 	//xTaskCreate(Serialtask, "Serial", 1024U, NULL, 4U, NULL);
-	xTaskCreate(GetSwitchStatus,
-				"Switch",
-				STACKSIZE_TASK_SWITCH,
-				NULL,
-				PRIORITY_TASK_SWITCH,
-				NULL);
-
+	xTaskCreate(GetSwitchStatus, "Switch", STACKSIZE_TASK_SWITCH, NULL, 4U, NULL);
 
 	vTaskStartScheduler();
 	for (;;) {

@@ -50,22 +50,13 @@
 #include <memPoolService.h>			/* Memory pool manager service			*/
 
 /*----- Macros -------------------------------------------------------------*/
-#define STACKSIZE_TASK_SWITCH (256)
-#define STACKSIZE_TASK_BUTTON (256)
-#define STACKSIZE_TASK_LCD (1024)
-
-#define PRIORITY_TASK_SWITCH (1)
-#define PRIORITY_TASK_BUTTON (1)
-#define PRIORYTY_TASK_LCD (1)
 
 /*----- Data types ---------------------------------------------------------*/
 
 /*----- Function prototypes ------------------------------------------------*/
 static void GreenLEDtask(void *pvargs);
 static void Serialtask(void *pvargs);
-static void GetSwitchStatus(void *pvargs);
-static void GetButtonStatus(void *pvargs);
-static void ShowStatusLCD(void *pvargs);
+static void GetSwitchStatus(void *pvargs)
 
 /*----- Data ---------------------------------------------------------------*/
 
@@ -79,15 +70,8 @@ int main(void) {
 	/* Ensure all priority bits are assigned as preemption priority bits. */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 
-	//xTaskCreate(GreenLEDtask, "Blinky", 200U, NULL, 4U, NULL);
-	//xTaskCreate(Serialtask, "Serial", 1024U, NULL, 4U, NULL);
-	xTaskCreate(GetSwitchStatus,
-				"Switch",
-				STACKSIZE_TASK_SWITCH,
-				NULL,
-				PRIORITY_TASK_SWITCH,
-				NULL);
-
+	xTaskCreate(GreenLEDtask, "Blinky", 200U, NULL, 4U, NULL);
+	xTaskCreate(Serialtask, "Serial", 1024U, NULL, 4U, NULL);
 
 	vTaskStartScheduler();
 	for (;;) {
@@ -147,31 +131,4 @@ static void GetSwitchStatus(void *pvargs)
 		vTaskDelay(100U / portTICK_RATE_MS);
 	}
 
-}
-
-/**
- * @brief		Read buttons.
- * @param[in]	pvargs		Not used
- */
-static void GetButtonStatus(void *pvargs)
-{
-
-	for(;;)
-	{
-
-		vTaskDelay(100U / portTICK_RATE_MS);
-	}
-}
-
-/**
- * @brief		Print button and switch status to LCD.
- * @param[in]	pvargs		Not used
- */
-static void ShowStatusLCD(void *pvargs)
-{
-	for(;;)
-	{
-
-		vTaskDelay(100U / portTICK_RATE_MS);
-	}
 }
