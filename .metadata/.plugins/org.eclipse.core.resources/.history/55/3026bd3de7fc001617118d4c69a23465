@@ -59,7 +59,8 @@
 /*----- Data types ---------------------------------------------------------*/
 
 /*----- Function prototypes ------------------------------------------------*/
-
+static void GreenLEDtask(void *pvargs); // TODO: Delete
+static void Serialtask(void *pvargs);   // TODO: Delete
 
 static void ReadPoti(void *pvargs);
 static void SetLEDSpeed(void *pvargs);
