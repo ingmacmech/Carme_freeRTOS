@@ -7782,3 +7782,12 @@ java.net.ConnectException: Connection refused: connect
 !MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@404c2d): Status ERROR: org.eclipse.cdt.dsf.gdb code=10004 Interrupt failed. null' resulted in an error.
 !SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2017-02-27 13:09:17.682
 !MESSAGE Interrupt failed.
+
+!ENTRY org.eclipse.osgi 2 1 2017-02-27 13:33:44.176
+!MESSAGE NLS unused message: AbstractJLinkDebugHardware_lblSerialNumber_text in: com.atollic.hardwaredebug.jlink_common.messages
+
+!ENTRY com.atollic.truestudio.common.wizards 1 0 2017-02-27 13:33:47.870
+!MESSAGE Linker script for EZBSY_U1A4 nor found.
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 13:34:24.929
+!MESSAGE Indexed 'EZBSY_U1A4' (4 sources, 141 headers) in 3.90 sec: 10,440 declarations; 13,233 references; 1 unresolved inclusions; 68 syntax errors; 41 unresolved names (0.17%)
