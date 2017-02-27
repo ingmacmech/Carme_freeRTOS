@@ -54,7 +54,7 @@
 #define STACKSIZE_TASK_READPOTI 	(256)
 #define STACKSIZE_TASK_SETLEDSPEED 	(256)
 
-#define PRIORITY_TASK_READPOTI		(2)
+#define PRIORITY_TASK_READPOTI		(1)
 #define PRIORITY_TASK_SETLEDSPEED 	(1)
 /*----- Data types ---------------------------------------------------------*/
 
@@ -79,7 +79,6 @@ int main(void) {
 	CARME_IO1_Init();
 	CARME_IO1_LED_Set(0x81, 0xFF);
 	CARME_IO2_Init();
-
 
 	xTaskCreate(ReadPoti, "Poti", STACKSIZE_TASK_READPOTI, NULL,
 				PRIORITY_TASK_READPOTI, NULL);
@@ -139,31 +138,16 @@ static void Serialtask(void *pvargs) {
  */
 static void ReadPoti(void *pvargs)
 {
-	uint16_t potiValue;					/* local copy of ledSpeed        	*/
 
-		for (;;) {
+	// Init Potentiometer
+	while(1)
+	{
 
-	        /* Read poti value */
-	        CARME_IO2_ADC_Get(CARME_IO2_ADC_PORT0, &potiValue);
+		vTaskDelay(100);
+	}
 
-	        /*  value between 100 and 999 */
-	        if (potiValue < 100)   {
-	        	potiValue = 100;
-	        }
-	        if (potiValue > 999)   {
-	        	potiValue = 999;
-	        }
-			/* copy ledSpeed to global variable u16LEDSpeed, this is an access to a
-			 * critical section, so disable interrupts while writing to the variable
-			 */
-			taskENTER_CRITICAL();	/* disable interrupts */
-			u16LEDSpeed = potiValue; /* access critical section */
-			taskEXIT_CRITICAL();	/* enable interrupts again */
-
-	        vTaskDelay(100 / portTICK_RATE_MS);     /* Wait for 100ms */
-
-			}
 }
+
 /**
  * @brief		Read Potentiometer Value and store it to u16LEDSpeed.
  * @param[in]	pvargs		Not used
@@ -172,14 +156,9 @@ static void SetLEDSpeed(void *pvargs)
 {
 	uint8_t u8LED1to6;
 	uint8_t u8Led;
-	uint16_t ledSpeed;
 
 	while(1)
 	{
-		taskENTER_CRITICAL();	/* disable interrupts */
-		ledSpeed = u16LEDSpeed; /* access critical section */
-		taskEXIT_CRITICAL();	/* enable interrupts again */
-
 		CARME_IO1_LED_Get(&u8Led);
 		u8LED1to6 = u8Led & 0x3F;
 		u8LED1to6 <<= 1;
@@ -188,7 +167,7 @@ static void SetLEDSpeed(void *pvargs)
 			u8LED1to6 = 1;
 		}
 		CARME_IO1_LED_Set(u8LED1to6, 0x3F);
-		vTaskDelay(ledSpeed);
+		vTaskDelay(1000);
 	}
 
 }
