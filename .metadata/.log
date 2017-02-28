@@ -7791,3 +7791,30 @@ java.net.ConnectException: Connection refused: connect
 
 !ENTRY org.eclipse.cdt.core 1 0 2017-02-27 13:34:24.929
 !MESSAGE Indexed 'EZBSY_U1A4' (4 sources, 141 headers) in 3.90 sec: 10,440 declarations; 13,233 references; 1 unresolved inclusions; 68 syntax errors; 41 unresolved names (0.17%)
+
+!ENTRY HaspError 4 0 2017-02-28 08:09:58.023
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.encrypt : 33 - Communication error between API and local Sentinel License Manager for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 08:10:00.018
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 33 - Communication error between API and local Sentinel License Manager for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 08:10:00.507
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.login : 40 - Communication error between local and remote Sentinel License Managers for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 08:10:00.508
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.encrypt : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY TrueSTUDIO License 2 0 2017-02-28 08:10:00.509
+!MESSAGE Failed to verify if feature is still alive for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY TrueSTUDIO 4 0 2017-02-28 08:10:02.134
+!MESSAGE Invalid license key!
+
+!ENTRY HaspError 4 0 2017-02-28 08:10:28.565
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.encrypt : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 08:10:28.566
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY TrueSTUDIO 1 0 2017-02-28 08:10:29.179
+!MESSAGE License key retried OK
