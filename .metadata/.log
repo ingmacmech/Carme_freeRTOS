@@ -7818,3 +7818,57 @@ java.net.ConnectException: Connection refused: connect
 
 !ENTRY TrueSTUDIO 1 0 2017-02-28 08:10:29.179
 !MESSAGE License key retried OK
+
+!ENTRY HaspError 4 0 2017-02-28 15:46:07.003
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.encrypt : 33 - Communication error between API and local Sentinel License Manager for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:46:11.836
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 33 - Communication error between API and local Sentinel License Manager for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:46:16.807
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.login : 40 - Communication error between local and remote Sentinel License Managers for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:46:16.808
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.encrypt : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY TrueSTUDIO License 2 0 2017-02-28 15:46:16.808
+!MESSAGE Failed to verify if feature is still alive for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY TrueSTUDIO 4 0 2017-02-28 15:46:18.726
+!MESSAGE Invalid license key!
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:31.732
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:32.237
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:32.740
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:33.242
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:33.745
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:34.247
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:34.750
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:35.252
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:35.755
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:36.257
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY HaspError 4 0 2017-02-28 15:48:36.759
+!MESSAGE com.atollic.truestudio.licensing.exposed.LicenseFeature.logout : 9 - Invalid login handle passed to function. License is logged out. for LicenseFeature [1002] product [1000] for key [146493851110484426]
+
+!ENTRY TrueSTUDIO License 4 0 2017-02-28 15:48:36.762
+!MESSAGE Failed to log out from feature 1002
