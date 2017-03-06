@@ -129,10 +129,10 @@ int main(void) {
 				NULL);
 
 	xTaskCreate(ShowStatusLCD,
-				"LCD",
+				"LCD"
 				STACKSIZE_TASK_LCD,
 				NULL,
-				PRIORYTY_TASK_LCD,
+				PRIORITY_TASK_LCD,
 				NULL);
 
 	vTaskStartScheduler();
@@ -220,16 +220,9 @@ static void ShowStatusLCD(void *pvargs)
 
 	for(;;)
 	{
-		sprintf(cBuffer, pcButtonsValueText, (int) u8ButtonState);
+		sprintf(cBuffer, pcButtonValueText, (int) u8ButtonState);
 		LCD_DisplayStringCenterLine(10,cBuffer);
-
-		LCD_DisplayStringCenterLine(10, "              ");
-		LCD_DisplayStringCenterLine(10, cBuffer);
-
-		sprintf(cBuffer, pcSwitchesValueText, (int) u8SwitchState);
-		LCD_DisplayStringCenterLine(11, cBuffer);
-
-		LCD_DisplayStringCenterLine(11, "              ");
+		sprintf(cBuffer, pcSwitchesValueText, (int) u8SwitchesState);
 		LCD_DisplayStringCenterLine(11, cBuffer);
 
 

@@ -42,9 +42,6 @@
 #include <stm32f4xx.h>				/* Processor STM32F407IG				*/
 #include <carme.h>					/* CARME Module							*/
 #include <uart.h>					/* CARME BSP UART port					*/
-#include <lcd.h>
-#include <carme_io1.h>
-#include <carme_io2.h>
 
 #include <FreeRTOS.h>				/* FreeRTOS								*/
 #include <task.h>					/* FreeRTOS tasks						*/
@@ -129,10 +126,10 @@ int main(void) {
 				NULL);
 
 	xTaskCreate(ShowStatusLCD,
-				"LCD",
+				"LCD"
 				STACKSIZE_TASK_LCD,
 				NULL,
-				PRIORYTY_TASK_LCD,
+				PRIORITY_TASK_LCD,
 				NULL);
 
 	vTaskStartScheduler();
@@ -220,16 +217,9 @@ static void ShowStatusLCD(void *pvargs)
 
 	for(;;)
 	{
-		sprintf(cBuffer, pcButtonsValueText, (int) u8ButtonState);
+		sprintf(cBuffer, pcButtonValueText, (int) u8ButtonState);
 		LCD_DisplayStringCenterLine(10,cBuffer);
-
-		LCD_DisplayStringCenterLine(10, "              ");
-		LCD_DisplayStringCenterLine(10, cBuffer);
-
-		sprintf(cBuffer, pcSwitchesValueText, (int) u8SwitchState);
-		LCD_DisplayStringCenterLine(11, cBuffer);
-
-		LCD_DisplayStringCenterLine(11, "              ");
+		sprintf(cBuffer, pcSwitchesValueText, (int) u8SwitchesState);
 		LCD_DisplayStringCenterLine(11, cBuffer);
 
 
