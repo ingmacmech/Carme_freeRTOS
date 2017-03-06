@@ -400,3 +400,6 @@ java.net.ConnectException: Connection refused: connect
 !ENTRY com.atollic.hardwaredebug.stlink 4 0 2017-03-06 13:10:29.003
 !MESSAGE Sent answer
 
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2017-03-06 13:24:30.539
+!MESSAGE Unloading product manager
