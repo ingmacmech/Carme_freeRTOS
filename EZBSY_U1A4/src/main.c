@@ -77,8 +77,6 @@
 /*----- Data types ---------------------------------------------------------*/
 
 /*----- Function prototypes ------------------------------------------------*/
-static void GreenLEDtask(void *pvargs);
-static void Serialtask(void *pvargs);
 static void GetSwitchStatus(void *pvargs);
 static void GetButtonStatus(void *pvargs);
 static void ShowStatusLCD(void *pvargs);
@@ -141,46 +139,6 @@ int main(void) {
 	return 0;
 }
 
-/**
- * @brief		Blink the green LED on the CARME Module every second.
- * @param[in]	pvargs		Not used
- */
-static void GreenLEDtask(void *pvargs) {
-
-	portTickType xLastWakeTime = xTaskGetTickCount();
-
-	for (;;) {
-
-		CARME_LED_Green_Set();
-		vTaskDelayUntil(&xLastWakeTime, 50U / portTICK_RATE_MS);
-		CARME_LED_Green_Reset();
-		vTaskDelayUntil(&xLastWakeTime, 950U / portTICK_RATE_MS);
-	}
-}
-
-/**
- * @brief		Print welcome string to the standard output.
- * @param[in]	pvargs		Not used
- */
-static void Serialtask(void *pvargs) {
-
-	USART_InitTypeDef USART_InitStruct;
-	USART_StructInit(&USART_InitStruct);
-	USART_InitStruct.USART_BaudRate = 115200U;
-	CARME_UART_Init(CARME_UART0, &USART_InitStruct);
-	vTaskDelay(5U / portTICK_RATE_MS);
-	printf("\033c");		/* Reset to initial state	*/
-	printf("\033[2J");		/* Clear screen				*/
-	printf("\033[?25l");	/* Cursor off				*/
-	vTaskDelay(5 / portTICK_RATE_MS);
-
-	printf("Welcome to CARME-M4 FreeRTOS\r\n");
-	vTaskDelay(2000U / portTICK_RATE_MS);
-
-	for (;;) {
-		vTaskDelay(1000U);
-	}
-}
 
 /**
  * @brief		Read switches.
