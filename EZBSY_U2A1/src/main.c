@@ -42,20 +42,32 @@
 #include <stm32f4xx.h>				/* Processor STM32F407IG				*/
 #include <carme.h>					/* CARME Module							*/
 #include <uart.h>					/* CARME BSP UART port					*/
+#include <lcd.h>                        /* GUI Library                       */
+#include <carme_io1.h>                  /* CARMEIO1 Board Support Package     */
+#include <carme_io2.h>                  /* CARMEIO2 Board Support Package     */
+
 
 #include <FreeRTOS.h>				/* FreeRTOS								*/
 #include <task.h>					/* FreeRTOS tasks						*/
 #include <queue.h>					/* FreeRTOS queues						*/
 #include <semphr.h>					/* FreeRTOS semaphores					*/
 #include <memPoolService.h>			/* Memory pool manager service			*/
+#include <timers.h>
+
+#include "potiTask.h"
+#include "ledTask.h"
+
 
 /*----- Macros -------------------------------------------------------------*/
+#define PRIORITY_LEDTASK    ( 2 )      /* Priority of LED Task                */
+#define PRIORITY_POTITASK   ( 2 )      /* Priority of Poti Task               */
 
+#define STACKSIZE_LEDTASK   ( 256 )    /* Stacksize in words of LED Task      */
+#define STACKSIZE_POTITASK  ( 64 )    /* Stacksize in words of Poti Task     */
 /*----- Data types ---------------------------------------------------------*/
 
 /*----- Function prototypes ------------------------------------------------*/
-static void GreenLEDtask(void *pvargs);
-static void Serialtask(void *pvargs);
+static void vCreateTasks(void);
 
 /*----- Data ---------------------------------------------------------------*/
 
@@ -69,56 +81,40 @@ int main(void) {
 	/* Ensure all priority bits are assigned as preemption priority bits. */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 
-	xTaskCreate(GreenLEDtask, "Blinky", 200U, NULL, 4U, NULL);
-	xTaskCreate(Serialtask, "Serial", 1024U, NULL, 4U, NULL);
+	CARME_IO1_Init();
+	CARME_IO2_Init();
 
+	vCreateTasks();
 	vTaskStartScheduler();
+
 	for (;;) {
 	}
 	return 0;
 }
 
-/**
- * @brief		Blink the green LED on the CARME Module every second.
- * @param[in]	pvargs		Not used
- */
-static void GreenLEDtask(void *pvargs) {
-
-	portTickType xLastWakeTime = xTaskGetTickCount();
-
-	for (;;) {
-
-		CARME_LED_Green_Set();
-		vTaskDelayUntil(&xLastWakeTime, 50U / portTICK_RATE_MS);
-		CARME_LED_Green_Reset();
-		vTaskDelayUntil(&xLastWakeTime, 950U / portTICK_RATE_MS);
-	}
+/*******************************************************************************
+ *  function :    vCreateTasks
+ ******************************************************************************/
+/** \brief        Create all application task
+ *
+ *  \type         local
+ *
+ *  \return       error code
+ *
+ ******************************************************************************/
+static void vCreateTasks(void)  {
+    /* Create LED Task */
+    xTaskCreate(vLEDTask,
+                "LED Task",
+                STACKSIZE_LEDTASK,
+                NULL,
+                PRIORITY_LEDTASK,
+                NULL);
+    /* Create Poti Task */
+    xTaskCreate(vPotiTask,
+                "Poti Task",
+                STACKSIZE_POTITASK,
+                NULL,
+                PRIORITY_POTITASK,
+                NULL);
 }
-
-/**
- * @brief		Print welcome string to the standard output.
- * @param[in]	pvargs		Not used
- */
-static void Serialtask(void *pvargs) {
-
-	USART_InitTypeDef USART_InitStruct;
-	USART_StructInit(&USART_InitStruct);
-	USART_InitStruct.USART_BaudRate = 115200U;
-	CARME_UART_Init(CARME_UART0, &USART_InitStruct);
-	vTaskDelay(5U / portTICK_RATE_MS);
-	printf("\033c");		/* Reset to initial state	*/
-	printf("\033[2J");		/* Clear screen				*/
-	printf("\033[?25l");	/* Cursor off				*/
-	vTaskDelay(5 / portTICK_RATE_MS);
-
-	printf("Welcome to CARME-M4 FreeRTOS\r\n");
-	vTaskDelay(2000U / portTICK_RATE_MS);
-
-	for (;;) {
-		vTaskDelay(1000U);
-	}
-}
-
-/**
- * @}
- */
