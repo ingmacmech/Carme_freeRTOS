@@ -41,7 +41,12 @@
 //----- Macros -----------------------------------------------------------------
 
 //----- Data types -------------------------------------------------------------
+uint16_t u16StackSize = 600;
+uint16_t u16TaskNumber = 500;
+uint16_t u16HeapSize = 100;
+TaskHandle_t ledTaskHandle;
 
+const char *pcNameLEDTask = "LED Task";
 //----- Function prototypes ----------------------------------------------------
 
 //----- Data -------------------------------------------------------------------
@@ -62,9 +67,22 @@
  *
  ******************************************************************************/
 void  vTaskStatus(void *pvData) {
+	/* local copies */
+	UBaseType_t StackSize;
+	UBaseType_t TaskNumber;
+	UBaseType_t HeapSize;
 
-
+	ledTaskHandle = xTaskGetHandle(pcNameLEDTask);
+	//TaskHandle_t potiTaskHandle = xTaskGetHandle("Poti Task");
+	//TaskHandle_t LCDTaskHandle = xTaskGetHandle("LCD Task");
+	//TaskHandle_t statusTaskHandle = xTaskGetHandle("");
 	for (;;) {
+
+		StackSize = uxTaskGetStackHighWaterMark( ledTaskHandle );
+
+		taskENTER_CRITICAL();
+		u16StackSize = (uint16_t) StackSize;
+		taskEXIT_CRITICAL();
 
         vTaskDelay(100 / portTICK_RATE_MS);
     }

@@ -62,10 +62,13 @@
 #define PRIORITY_LEDTASK    ( 2 )      /* Priority of LED Task              */
 #define PRIORITY_POTITASK   ( 2 )      /* Priority of Poti Task             */
 #define PRIORITY_LCDTASK	( 3 )	   /* Priority of Poti Task             */
+#define PRIORITY_STATUSTASK ( 4 )	   /* Priority of Status Task 			*/
 
 #define STACKSIZE_LEDTASK   ( 64 )    /* Stacksize in words of LED Task     */
 #define STACKSIZE_POTITASK  ( 64 )    /* Stacksize in words of Poti Task    */
-#define STACKSIZE_LCDTASK  ( 524 )   /* Stacksize in words of Poti Task    */
+#define STACKSIZE_LCDTASK  ( 524 )   /* Stacksize in words of Poti Task     */
+#define STACKSIZE_STATUSTASK ( 128 ) /* Stacksize in words of Status Task	*/
+
 
 /*----- Data types ---------------------------------------------------------*/
 
@@ -126,4 +129,11 @@ static void vCreateTasks(void)  {
     			NULL,
     			PRIORITY_LCDTASK,
     			NULL);
+    xTaskCreate(vTaskStatus,
+    			"Status Task",
+    			STACKSIZE_STATUSTASK,
+    			NULL,
+    			PRIORITY_STATUSTASK,
+    			NULL);
+
 }

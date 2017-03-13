@@ -20,6 +20,10 @@
 //----- Macros -----------------------------------------------------------------
 
 //----- Data types -------------------------------------------------------------
+extern uint16_t u16StackSize;
+extern uint16_t u16TaskNumber;
+extern uint16_t u16HeapSize;
+
 
 //----- Function prototypes ----------------------------------------------------
 extern void vTaskStatus(void *pvData);

@@ -36,6 +36,7 @@
 
 #include "LCDTask.h"
 #include "potiTask.h"
+#include "taskStatus.h"
 
 //----- Macros -----------------------------------------------------------------
 
@@ -96,16 +97,28 @@ void  vLCDTask(void *pvData) {
 		LCD_DisplayStringXY(X_POTI_VALUE, Y_POTI, "     ");
 		LCD_DisplayStringXY(X_POTI_VALUE, Y_POTI, cBuffer);
 
+		taskENTER_CRITICAL();
+		nTasks = u16TaskNumber;
+		taskEXIT_CRITICAL();
+
 		/* display number of tasks running */
 		sprintf(cBuffer, "%d", (int) nTasks);
 		LCD_DisplayStringXY(X_TASK_NUMBER, Y_TASK, "    ");
 		LCD_DisplayStringXY(X_TASK_NUMBER, Y_TASK, cBuffer);
         vTaskDelay(100 / portTICK_RATE_MS);
 
+        taskENTER_CRITICAL();
+        stackSize = u16StackSize;
+        taskEXIT_CRITICAL();
+
         /* display stack size used*/
         sprintf(cBuffer, "%d", (int) stackSize);
         LCD_DisplayStringXY(X_STACK_NUMBER, Y_STACK, "     ");
         LCD_DisplayStringXY(X_STACK_NUMBER, Y_STACK, cBuffer);
+
+        taskENTER_CRITICAL();
+        heapSize = u16HeapSize;
+        taskEXIT_CRITICAL();
 
         /* display heap size used */
         sprintf(cBuffer, "%d", (int) heapSize);
