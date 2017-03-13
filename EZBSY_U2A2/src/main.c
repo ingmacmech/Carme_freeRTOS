@@ -56,13 +56,16 @@
 #include "potiTask.h"
 #include "ledTask.h"
 #include "taskStatus.h"
+#include "LCDTAsk.h"
 
 /*----- Macros -------------------------------------------------------------*/
-#define PRIORITY_LEDTASK    ( 2 )      /* Priority of LED Task                */
-#define PRIORITY_POTITASK   ( 2 )      /* Priority of Poti Task               */
+#define PRIORITY_LEDTASK    ( 2 )      /* Priority of LED Task              */
+#define PRIORITY_POTITASK   ( 2 )      /* Priority of Poti Task             */
+#define PRIORITY_LCDTASK	( 3 )	   /* Priority of Poti Task             */
 
-#define STACKSIZE_LEDTASK   ( 256 )    /* Stacksize in words of LED Task      */
-#define STACKSIZE_POTITASK  ( 64 )    /* Stacksize in words of Poti Task     */
+#define STACKSIZE_LEDTASK   ( 64 )    /* Stacksize in words of LED Task     */
+#define STACKSIZE_POTITASK  ( 64 )    /* Stacksize in words of Poti Task    */
+#define STACKSIZE_LCDTASK  ( 524 )   /* Stacksize in words of Poti Task    */
 
 /*----- Data types ---------------------------------------------------------*/
 
@@ -117,4 +120,10 @@ static void vCreateTasks(void)  {
                 NULL,
                 PRIORITY_POTITASK,
                 NULL);
+    xTaskCreate(vLCDTask,
+    			"LCD Task",
+    			STACKSIZE_LCDTASK,
+    			NULL,
+    			PRIORITY_LCDTASK,
+    			NULL);
 }
