@@ -55,6 +55,7 @@
 
 #include "potiTask.h"
 #include "ledTask.h"
+#include "taskStatus.h"
 
 /*----- Macros -------------------------------------------------------------*/
 #define PRIORITY_LEDTASK    ( 2 )      /* Priority of LED Task                */
